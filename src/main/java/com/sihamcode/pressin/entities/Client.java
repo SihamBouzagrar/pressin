@@ -65,9 +65,5 @@ public class Client {
         return "Client{id=" + id + ", nom='" + nom + "', telephone='" + telephone + "'}";
     }
 
-    public Object map(Object object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'map'");
-    }
-
+  
 }

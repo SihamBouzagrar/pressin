@@ -1,0 +1,23 @@
+/*selector*/
+body{
+    font-size: 22px;
+}
+/*without , the selector search he location of h2 inside h1*/
+h1,h2{
+    color: blue;
+}
+p{
+    color:blueviolet;
+}
+p span{
+    text-transform: uppercase;
+    background-color: gold;
+}
+/* class*/
+.gray {
+    color :aqua;
+}
+/* id selector unique*/
+#second{
+    font-style: italic;
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Passer commande</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header><a href="index.html">← Retour</a><h1>Nouvelle commande</h1></header>
+  <main class="container">
+    <form id="orderForm">
+      <label>Client ID <input name="clientId" required></label>
+      <label>Sélectionnez les articles (id:quantité), ex: 1:2,2:1 <input name="items" placeholder="1:2,2:1" required></label>
+      <label>Date de livraison souhaitée <input type="date" name="deliveryDate"></label>
+      <button type="submit">Envoyer la commande</button>
+    </form>
+
+    <section id="orderResult"></section>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('orderForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const itemsRaw = f.items.value.split(',').map(s => {
+        const [articleId, qty] = s.split(':').map(x=>x.trim());
+        return { articleId: Number(articleId), quantity: Number(qty) };
+      });
+      const payload = {
+        clientId: Number(f.clientId.value),
+        items: itemsRaw,
+        deliveryDate: f.deliveryDate.value || null
+      };
+      try {
+        let resp = await app.createOrder(payload);
+        document.getElementById('orderResult').textContent = "Commande créée: " + resp.reference;
+      } catch (err) {
+        document.getElementById('orderResult').textContent = "Erreur: " + err.message;
+      }
+    };
+  </script>
+</body>
+</html>

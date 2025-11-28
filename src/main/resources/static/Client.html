@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Compte client</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header><a href="index.html">← Retour</a><h1>Compte</h1></header>
+  <main class="container">
+    <section>
+      <h2>Connexion</h2>
+      <form id="loginForm">
+        <input name="email" placeholder="Email" required>
+        <input name="password" placeholder="Mot de passe" type="password" required>
+        <button type="submit">Se connecter</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Inscription</h2>
+      <form id="registerForm">
+        <input name="nom" placeholder="Nom" required>
+        <input name="email" placeholder="Email" required>
+        <input name="telephone" placeholder="Téléphone">
+        <button type="submit">S'inscrire</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('loginForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const data = { email: e.target.email.value, password: e.target.password.value };
+      await app.login(data);
+      alert('Connecté');
+    };
+    document.getElementById('registerForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const data = { nom: e.target.nom.value, email: e.target.email.value, telephone: e.target.telephone.value };
+      await app.register(data);
+      alert('Inscrit');
+    };
+  </script>
+</body>
+</html>
