@@ -4,7 +4,7 @@ import com.sihamcode.pressin.repositories.ClientRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Optional;
+
 @Service
 public class ClientService {
   @Autowired
